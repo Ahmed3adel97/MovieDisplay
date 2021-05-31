@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect, createRef} from 'react'
-import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight} from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import Header from './components/Header'
 export default function App() {
   const API_URL = "http://api.themoviedb.org/3/discover/movie?api_key=59f0bcf1898b36006f068c2e060b0064"
@@ -42,23 +42,22 @@ export default function App() {
         <Text style={styles.title}> Movie Database !</Text>
        <ScrollView 
         style={styles.results}
+        
         bounces={false}
         scrollEnabled={true}> 
          {movies.map(movie => (
-           <TouchableHighlight 
-           >
             <View  key={movie.id} style={styles.result}>
-                <Image style={styles.poster}
-                source={{uri: IMG_URL+movie.poster_path}}
-                />
-                <View style={styles.movieInfo}>
-                    <Text style={styles.heading}>{movie.title}</Text>
-                    <Text style={styles.rating} >{movie.rating}</Text>
-                    <View style={styles.overview}> {movie.overview} </View>      
+                  <Image style={styles.poster}
+                    source={{uri: IMG_URL+movie.poster_path}}
+                   />
 
-                </View>
+                  <View style={styles.movieInfo}>
+                      <Text style={styles.heading}>{movie.title}</Text>
+                      <Text style={styles.rating} >{movie.rating}</Text>
+                      {/* <Text style={styles.overview}> {movie.overview} </Text>       */}
+                  </View>
+
             </View>
-            </TouchableHighlight>
          ))}
        </ScrollView>
 
@@ -109,16 +108,16 @@ const styles = StyleSheet.create({
     color: '#000',
     position:'absolute',
     padding:25,
+    paddingTop:30
     
   },
   movieInfo:{
-    color:'#eee',
+    color:'#fff',
     backgroundColor:'#445565',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    letterSpacing: '0.5px',
     paddingRight:80
 },
   rating:{
@@ -126,7 +125,7 @@ const styles = StyleSheet.create({
   width:30,
   height:30,
   backgroundColor: '#223343',
-  borderRadius: '5px',
+  borderRadius: 20,
   fontWeight: "700",
   textAlign:'center',
   fontSize:15,
